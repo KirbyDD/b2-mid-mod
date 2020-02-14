@@ -1,0 +1,8 @@
+<% @studios.each do |studio| %>
+  <article id="studio-<%= studio.id %>"
+    <h2><%= studio.name %></h2>
+    <% studio.movies.each do |movie| %>
+      <p><%= movie.name %></p>
+    <% end %>
+  </article>
+<% end %>

@@ -6,6 +6,6 @@ RSpec.describe Studio, type: :model do
   end
 
   describe 'relationships' do
-    xit {should have_many :movies}
+    it {should have_many :movies}
   end
 end

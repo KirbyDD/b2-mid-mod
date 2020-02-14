@@ -11,10 +11,11 @@ RSpec.describe "As a visitor to Actors Show Page", type: :feature do
 
     @movie3 = @studio.movies.create!(name: "Animaniacs", creation_year: "1980", genre: "Comedy")
     @actor2 = @movie3.actors.create!(name: "Mike", age: 25)
+    @movie2.actors << @actor2
+
+    visit "/actors/#{@actor1.id}"
   end
   it 'should show studio name and all movies' do
-    visit "/actors/#{@actor1.id}"
-
     expect(page).to have_content(@actor1.name)
     expect(page).to have_content(@actor1.age)
     expect(page).to have_content(@movie1.name)
@@ -22,5 +23,12 @@ RSpec.describe "As a visitor to Actors Show Page", type: :feature do
 
     expect(page).to_not have_content(@actor2.name)
     expect(page).to_not have_content(@movie3.name)
+  end
+
+  xit 'should show co stars name' do
+    within "#costars" do
+      expect(page).to have_content("List of Past Co Stars")
+      expect(page).to have_content(@actor2.name)
+    end
   end
 end
